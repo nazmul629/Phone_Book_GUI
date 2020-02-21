@@ -1,6 +1,7 @@
 from tkinter import *
 from add_people import AddPeople
 import sqlite3 
+from update_people import Update
 
 con = sqlite3.connect('database.db')
 cur =  con.cursor()
@@ -51,8 +52,9 @@ class MyPeople(Toplevel):
         self.btn_add = Button(self.bottom,text="Add",width=12,font='arial 11 bold',command=self.add_people)
         self.btn_add.grid(row=0,column=2,sticky=N,padx=20,pady=10)
         
-        self.btn_update = Button(self.bottom,text="Update",width=12,font='arial 11 bold')
-        self.btn_update.grid(row=0,column=2,sticky=N,padx=20,pady=50)
+        self.btn_update = Button(self.bottom,text="Update",width=12,font='arial 11 bold',
+                 command = self.update_func)
+        self.btn_update.grid(row=0,column=2,sticky=N,padx=20,pady=50,)
         
         self.btn_display=Button(self.bottom,text="Display",width=12,font="arial 11 bold")
         self.btn_display.grid(row=0,column=2,sticky=N,padx=20,pady=90)
@@ -66,5 +68,12 @@ class MyPeople(Toplevel):
         self.destroy()
 
 
-
+    def update_func(self):
+        selected_item = self.list_box.curselection()
+        
+        person = self.list_box.get(selected_item)
+        person_id = person.split('.')[0]
+        updadate_page  = Update(person_id)
+        
+        
 
