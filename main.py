@@ -1,5 +1,7 @@
 from tkinter import *
 from view_people import MyPeople
+from add_people import AddPeople
+
 import datetime
 
 
@@ -38,7 +40,7 @@ class Application(object):
 
 
       #  Add Button
-        self.AddButton = Button(self.bottom, text = " Add People",font="arial 15 bold",bd=4,bg='white',fg='#42bcf5')
+        self.AddButton = Button(self.bottom, text = " Add People",font="arial 15 bold",bd=4,bg='white',fg='#42bcf5',command = self.add_people_func)
         self.AddButton.place(x=250,y=130)
     
          # About us
@@ -48,6 +50,11 @@ class Application(object):
 
     def my_people(self):
         people = MyPeople()
+
+    def add_people_func(self):
+      add_people_now = AddPeople()
+
+
 
 
 
